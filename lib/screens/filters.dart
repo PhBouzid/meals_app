@@ -10,6 +10,8 @@ enum Filter {
 }
 
 class FiltersScreen extends StatefulWidget {
+  const FiltersScreen({super.key});
+
   @override
   State<FiltersScreen> createState() {
     return _FiltersScreenState();
@@ -37,11 +39,16 @@ class _FiltersScreenState extends State<FiltersScreen> {
             }
           },
         ),
-        body: WillPopScope(
-          onWillPop: () async {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (ctx) => const TabsScreen()));
-            return true;
+        body: PopScope(
+          canPop: false,
+          onPopInvoked: (bool didPop) {
+            if (didPop) return;
+            Navigator.of(context).pop({
+              Filter.glutenFree: glutenFree,
+              Filter.lactoseFree: lactoseFree,
+              Filter.vegetarian: vegetarian,
+              Filter.vegan: vegan,
+            });
           },
           child: Column(children: [
             SwitchListTile(

@@ -15,7 +15,6 @@ final defaultTheme = ThemeData(
 );
 
 final darkTheme = ThemeData.dark().copyWith(
-  useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
     brightness: Brightness.dark,
     seedColor: const Color.fromARGB(255, 131, 57, 0),
