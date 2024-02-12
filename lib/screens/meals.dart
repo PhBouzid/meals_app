@@ -4,23 +4,17 @@ import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/widgets/meals_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen(
-      {super.key,
-      this.title,
-      required this.meals,
-      required this.onToggleFavorite});
+  const MealsScreen({super.key, this.title, required this.meals});
 
   final String? title;
 
   final List<Meal> meals;
-  final Function(Meal) onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
     Widget content = ListView.separated(
       itemBuilder: (context, index) {
-        return MealsItem(
-            meal: meals[index], onToggleFavorite: onToggleFavorite);
+        return MealsItem(meal: meals[index]);
       },
       separatorBuilder: (context, index) => const Divider(),
       itemCount: meals.length,
